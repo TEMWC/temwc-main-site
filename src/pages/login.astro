@@ -1,0 +1,85 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { SITE_TITLE } from '../consts';
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title={`Login | ${SITE_TITLE}`} description="Login or sign up for Trails End Mutual Water Company." />
+	</head>
+	<body>
+		<Header />
+		<main>
+			<h1>Login / Sign Up</h1>
+			<p>Use the forms below to login or create a new account.</p>
+			<div class="auth-sections">
+				<section class="auth-card">
+					<h2>Login</h2>
+					<form>
+						<label>
+							<span>Email Address</span>
+							<input type="email" name="loginEmail" placeholder="you@example.com" required />
+						</label>
+						<label>
+							<span>Password</span>
+							<input type="password" name="loginPassword" placeholder="Password" required />
+						</label>
+						<div class="form-actions">
+							<button type="submit" class="button button-primary">Login</button>
+						</div>
+					</form>
+				</section>
+				<section class="auth-card">
+					<h2>Sign Up</h2>
+					<form>
+						<label>
+							<span>Member Name</span>
+							<input type="text" name="signupName" placeholder="Your full name" required />
+						</label>
+						<label>
+							<span>Email Address</span>
+							<input type="email" name="signupEmail" placeholder="you@example.com" required />
+						</label>
+						<label>
+							<span>Password</span>
+							<input type="password" name="signupPassword" placeholder="Create a password" required />
+						</label>
+						<label>
+							<span>Confirm Password</span>
+							<input type="password" name="signupConfirm" placeholder="Confirm password" required />
+						</label>
+						<div class="form-actions">
+							<button type="submit" class="button button-secondary">Sign Up</button>
+						</div>
+					</form>
+				</section>
+			</div>
+		</main>
+		<Footer />
+		<style>
+			.auth-sections {
+				display: grid;
+				grid-template-columns: repeat(2, minmax(0, 1fr));
+				gap: 2rem;
+				margin-top: 1.5rem;
+			}
+			.auth-card {
+				padding: 1.5rem;
+				border-radius: 18px;
+				background: white;
+				box-shadow: var(--box-shadow);
+			}
+			.auth-card h2 {
+				margin-top: 0;
+			}
+			@media (max-width: 720px) {
+				.auth-sections {
+					grid-template-columns: 1fr;
+				}
+			}
+		</style>
+	</body>
+</html>

@@ -97,6 +97,77 @@ textarea {
 input {
 	font-size: 16px;
 }
+.button {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	gap: 0.5rem;
+	padding: 0.85rem 1.25rem;
+	min-height: 44px;
+	border-radius: 999px;
+	border: 1px solid transparent;
+	text-decoration: none;
+	font-weight: 700;
+	transition: background-color 0.2s ease, color 0.2s ease, opacity 0.2s ease;
+}
+.button-primary {
+	background: var(--accent);
+	color: white;
+}
+.button-secondary {
+	background: white;
+	color: var(--accent);
+	border-color: var(--accent);
+}
+.button:hover,
+button:hover {
+	opacity: 0.92;
+}
+form {
+	max-width: 720px;
+	margin: 0 auto;
+}
+form label {
+	display: block;
+	margin-bottom: 1.25rem;
+	font-weight: 600;
+	color: rgb(var(--black));
+}
+form label span {
+	display: block;
+	margin-bottom: 0.5rem;
+}
+form input,
+form textarea {
+	width: 100%;
+	min-height: 3rem;
+	padding: 0.9rem 1rem;
+	border: 1px solid rgba(var(--gray), 0.35);
+	border-radius: 12px;
+	background: white;
+	color: rgb(var(--black));
+	box-sizing: border-box;
+}
+form textarea {
+	min-height: 200px;
+	resize: vertical;
+}
+.form-actions {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 1rem;
+	margin-top: 1.5rem;
+}
+.form-status {
+	margin-top: 1rem;
+	font-weight: 700;
+}
+.form-status.error {
+	color: #c72c41;
+}
+.form-status.success {
+	color: #0a7d44;
+}
 table {
 	width: 100%;
 }

@@ -1,0 +1,93 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { SITE_TITLE } from '../consts';
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title={`Contact Us | ${SITE_TITLE}`} description="Send us a message through the Trails End Mutual Water Company contact form." />
+	</head>
+	<body>
+		<Header />
+		<main>
+			<h1>Contact Us</h1>
+			<p>Please fill in all required fields and complete the captcha before sending your message.</p>
+			<form id="contactForm">
+				<label>
+					<span>Member Name</span>
+					<input type="text" name="name" id="memberName" placeholder="Your full name" required />
+				</label>
+				<label>
+					<span>Member E-mail Address</span>
+					<input type="email" name="email" id="memberEmail" placeholder="you@example.com" required />
+				</label>
+				<label>
+					<span>Phone Number</span>
+					<input type="tel" name="phone" id="memberPhone" placeholder="(555) 123-4567" required />
+				</label>
+				<label>
+					<span>Subject</span>
+					<input type="text" name="subject" id="subject" placeholder="Message subject" required />
+				</label>
+				<label>
+					<span>Message</span>
+					<textarea name="message" id="message" placeholder="Write your message here" required></textarea>
+				</label>
+				<label>
+					<span>Captcha: <span id="captchaQuestion"></span></span>
+					<input type="text" name="captcha" id="captchaAnswer" placeholder="Type the answer" required />
+				</label>
+				<div class="form-actions">
+					<button type="submit" class="button button-primary">Send Message</button>
+				</div>
+				<div id="formStatus" class="form-status"></div>
+			</form>
+		</main>
+		<Footer />
+		<script>
+			const form = document.getElementById('contactForm') as HTMLFormElement | null;
+			const status = document.getElementById('formStatus') as HTMLElement | null;
+			const captchaQuestion = document.getElementById('captchaQuestion') as HTMLElement | null;
+			const captchaAnswerInput = document.getElementById('captchaAnswer') as HTMLInputElement | null;
+			let expectedCaptchaAnswer = '';
+
+			function generateCaptcha() {
+				if (!captchaQuestion) return;
+				const a = Math.floor(Math.random() * 9) + 1;
+				const b = Math.floor(Math.random() * 9) + 1;
+				expectedCaptchaAnswer = String(a + b);
+				captchaQuestion.textContent = `What is ${a} + ${b}?`;
+			}
+
+			function setStatus(message: string, isError = false) {
+				if (!status) return;
+				status.textContent = message;
+				status.className = `form-status ${isError ? 'error' : 'success'}`;
+			}
+
+			if (form && status && captchaQuestion && captchaAnswerInput) {
+				form.addEventListener('submit', event => {
+					event.preventDefault();
+					const userCaptcha = captchaAnswerInput.value.trim();
+					if (userCaptcha !== expectedCaptchaAnswer) {
+						setStatus('Captcha verification failed. Please answer the question correctly.', true);
+						generateCaptcha();
+						captchaAnswerInput.value = '';
+						return;
+					}
+
+					setStatus('Message sent successfully! Thank you for contacting us.');
+					form.reset();
+					generateCaptcha();
+				});
+
+				generateCaptcha();
+			} else {
+				console.error('Contact form initialization failed: missing form elements.');
+			}
+		</script>
+	</body>
+</html>
