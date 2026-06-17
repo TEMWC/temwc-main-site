@@ -39,13 +39,13 @@ import { SITE_TITLE } from '../consts';
 		align-items: center;
 		justify-content: space-between;
 	}
-	nav a {
+	.internal-links a {
 		padding: 1em 0.5em;
 		color: var(--black);
 		border-bottom: 4px solid transparent;
 		text-decoration: none;
 	}
-	nav a.active {
+	.internal-links a.active {
 		text-decoration: none;
 		border-bottom-color: var(--accent);
 	}
@@ -54,18 +54,32 @@ import { SITE_TITLE } from '../consts';
 		align-items: center;
 		gap: 0.75rem;
 	}
+	.button-links a {
+		padding: 0;
+		flex: 1;
+		min-width: 9rem;
+	}
+	.button-links .button-primary,
+	.button-links .button-secondary {
+		background: var(--accent);
+		color: white;
+		border-color: transparent;
+	}
+	.button-links .button-secondary {
+		border-color: transparent;
+	}
 	@media (max-width: 720px) {
 		nav {
 			flex-wrap: wrap;
 			gap: 1rem;
 		}
 		.button-links {
-			width: 100%;
+			width: 50%;
 			justify-content: flex-start;
 		}
 		nav a,
 		.button-links a {
-			flex: 1 1 100%;
+			flex: 1 1 50%;
 		}
 	}
 </style>
