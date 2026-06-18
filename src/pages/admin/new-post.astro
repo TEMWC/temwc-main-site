@@ -1,0 +1,41 @@
+---
+// This is server-side code. You could pre-fetch categories, etc. here.
+---
+<html>
+  <body>
+    <h1>Create New Blog Post</h1>
+    <form id="postForm">
+      <input type="text" name="title" placeholder="Post Title" required />
+      <textarea name="body" placeholder="MDXL Content" required></textarea>
+      <input type="file" name="heroImage" accept="image/*" required />
+      <button type="submit">Publish Post</button>
+    </form>
+
+    <script lang="ts">
+      const form = document.getElementById('postForm');
+
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        
+        const formData = new FormData(form);
+
+        try {
+          const response = await fetch('/api/upload', {
+            method: 'POST',
+            body: formData, // Fetch automatically sets the correct headers
+          });
+
+          const result = await response.json();
+          if (result.success) {
+            alert('Post published successfully!');
+            form.reset();
+          } else {
+            alert('Error publishing post.');
+          }
+        } catch (error) {
+          console.error('Upload failed:', error);
+        }
+      });
+    </script>
+  </body>
+</html>

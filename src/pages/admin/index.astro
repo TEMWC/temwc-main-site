@@ -1,0 +1,24 @@
+---
+import BaseHead from '../../components/BaseHead.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import { SITE_TITLE, SITE_DESCRIPTION } from '../../consts';
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title={`Admin | ${SITE_TITLE}`} description="Your admin portal for Trails End Mutual Water Company." />
+	</head>
+	<body>
+		<Header />
+		<main>
+			<h2>Admin Portal</h2>
+			<p>
+				Here you will be able to manage meter data,
+                write blog posts, billing and view account statuses
+			</p>			
+		</main>
+		<Footer />
+	</body>
+</html>
