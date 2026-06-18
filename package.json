@@ -12,14 +12,15 @@
 		"publish": true
 	},
 	"dependencies": {
-		"@astrojs/cloudflare": "12.6.12",
-		"@astrojs/mdx": "4.3.13",
-		"@astrojs/rss": "4.0.14",
-		"@astrojs/sitemap": "3.6.1",
-		"astro": "5.16.9",
+		"@astrojs/cloudflare": "^13.7.0",
+		"@astrojs/mdx": "^6.0.3",
+		"@astrojs/rss": "^4.0.18",
+		"@astrojs/sitemap": "^3.7.3",
+		"astro": "^6.4.8",
 		"typescript": "5.9.3"
 	},
 	"devDependencies": {
+		"@cloudflare/workers-types": "^4.20260617.1",
 		"wrangler": "4.88.0"
 	},
 	"engines": {
