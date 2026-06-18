@@ -1,0 +1,33 @@
+/**
+ * For more details on how to configure Wrangler, refer to:
+ * https://developers.cloudflare.com/workers/wrangler/configuration/
+ */
+{
+	"$schema": "node_modules/wrangler/config-schema.json",
+	"name": "temwc-main-site",
+	"compatibility_date": "2026-06-18",
+    //"ompatibility_flags": ["nodejs_compat"],
+      "route": {
+    "pattern": "temwc.org/*",
+    "zone_name": "temwc.org",
+  },
+    "workers_dev": true,
+    "d1_databases": [
+        {
+          "binding": "DB",
+          "database_name": "temwc",
+          "database_id": "5197ccdf-392a-41d8-b4c8-b923c1022202"
+        }
+    ],
+    "secrets_store_secrets": [
+        {
+            "store_id": "58f85ea4079d484a971b09673e5050f8",
+            "binding": "SECRET",
+            "secret_name": "db-secret"
+            //550e8400-e29b-41d4-a716-446655440000
+        }
+    ],
+	"observability": {
+		"enabled": true
+	}
+}

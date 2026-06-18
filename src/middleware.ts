@@ -1,7 +1,7 @@
 import { defineMiddleware } from "astro:middleware";
 
 export const onRequest = defineMiddleware((context, next) => {
-  const protectedRoutes = ["/dashboard", "/settings"];
+  const protectedRoutes = ["/dashboard", "/settings", "/admin"]; //Todo: move admin to zero trust.
   
   // 1. Check if the current route is protected
   if (protectedRoutes.some(route => context.url.pathname.startsWith(route))) {
