@@ -18,7 +18,7 @@ import { SITE_TITLE } from '../../consts';
 			<div class="auth-sections">
 				<section class="auth-card">
 					<h2>Login</h2>
-					<form>
+					<form id="loginForm">
 						<label>
 							<span>Email Address</span>
 							<input type="email" name="loginEmail" placeholder="you@example.com" required />
@@ -27,6 +27,7 @@ import { SITE_TITLE } from '../../consts';
 							<span>Password</span>
 							<input type="password" name="loginPassword" placeholder="Password" required />
 						</label>
+						<div id="loginMessage" class="form-message"></div>
 						<div class="form-actions">
 							<button type="submit" class="button button-primary">Login</button>
 						</div>
@@ -34,7 +35,7 @@ import { SITE_TITLE } from '../../consts';
 				</section>
 				<section class="auth-card">
 					<h2>Sign Up</h2>
-					<form>
+					<form id="signupForm">
 						<label>
 							<span>Member Name</span>
 							<input type="text" name="signupName" placeholder="Your full name" required />
@@ -51,6 +52,7 @@ import { SITE_TITLE } from '../../consts';
 							<span>Confirm Password</span>
 							<input type="password" name="signupConfirm" placeholder="Confirm password" required />
 						</label>
+						<div id="signupMessage" class="form-message"></div>
 						<div class="form-actions">
 							<button type="submit" class="button button-secondary">Sign Up</button>
 						</div>
@@ -75,11 +77,30 @@ import { SITE_TITLE } from '../../consts';
 			.auth-card h2 {
 				margin-top: 0;
 			}
+			.form-message {
+				margin: 0.75rem 0;
+				padding: 0.75rem;
+				border-radius: 8px;
+				min-height: 1px;
+			}
+			.form-message.error {
+				background-color: #fee;
+				color: #c33;
+			}
+			.form-message.success {
+				background-color: #efe;
+				color: #3c3;
+			}
 			@media (max-width: 720px) {
 				.auth-sections {
 					grid-template-columns: 1fr;
 				}
 			}
 		</style>
+
+		<script type="module">
+			import { initializeAuthForms } from '../../scripts/auth';
+			initializeAuthForms();
+		</script>
 	</body>
 </html>

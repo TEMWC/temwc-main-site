@@ -4,9 +4,10 @@
  */
 {
 	"$schema": "node_modules/wrangler/config-schema.json",
+    "main": "@astrojs/cloudflare/entrypoints/server",
 	"name": "temwc-main-site",
 	"compatibility_date": "2026-06-18",
-    //"ompatibility_flags": ["nodejs_compat"],
+    "compatibility_flags": ["nodejs_compat"],
       "route": {
     "pattern": "temwc.org/*",
     "zone_name": "temwc.org",
@@ -16,7 +17,8 @@
         {
           "binding": "DB",
           "database_name": "temwc",
-          "database_id": "5197ccdf-392a-41d8-b4c8-b923c1022202"
+          "database_id": "5197ccdf-392a-41d8-b4c8-b923c1022202",
+          "migrations_dir": "drizzle"
         }
     ],
     "secrets_store_secrets": [

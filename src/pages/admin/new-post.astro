@@ -14,9 +14,7 @@
     <script lang="ts">
       const form = document.getElementById('postForm');
 
-      form.addEventListener('submit', async (e) => {
-        e.preventDefault();
-        
+      async function handleSubmit() {
         const formData = new FormData(form);
 
         try {
@@ -35,6 +33,11 @@
         } catch (error) {
           console.error('Upload failed:', error);
         }
+      }
+
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        handleSubmit();
       });
     </script>
   </body>
