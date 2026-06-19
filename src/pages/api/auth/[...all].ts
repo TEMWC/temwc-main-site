@@ -1,6 +1,8 @@
 import type { APIRoute } from "astro";
 import { createAuth } from "../../../auth";
 
+export const prerender = false;
+
 export const GET: APIRoute = async (ctx) => {
 	// @ts-ignore - Astro v6+ Cloudflare adapter provides env directly on locals
 	const D1Database = ctx.locals.env?.DB;
