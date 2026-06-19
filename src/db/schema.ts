@@ -4,6 +4,7 @@ export const users = sqliteTable("users", {
   id: text("id").primaryKey(),
   name: text("name").notNull(),
   email: text("email").notNull().unique(),
+  email_verified: text("email_verified"),
   password_hash: text("password_hash").notNull(),
   salt: text("salt").notNull(),
   created_at: text("created_at").notNull(),
@@ -24,6 +25,15 @@ export const sessions = sqliteTable("sessions", {
   expiresAtIdx: index("idx_sessions_expires_at").on(table.expires_at),
 }));
 
+export const verification = sqliteTable("verification", {
+  id: text("id").primaryKey(),
+  identifier: text("identifier").notNull(),
+  value: text("value").notNull(),
+  expires_at: text("expires_at").notNull(),
+}, (table) => ({
+  identifierIdx: index("idx_verification_identifier").on(table.identifier),
+}));
+
 export const posts = sqliteTable("posts", {
   id: text("id").primaryKey(),
   title: text("title").notNull(),
@@ -35,4 +45,5 @@ export const posts = sqliteTable("posts", {
 
 export type User = typeof users.$inferSelect;
 export type Session = typeof sessions.$inferSelect;
+export type Verification = typeof verification.$inferSelect;
 export type Post = typeof posts.$inferSelect;
