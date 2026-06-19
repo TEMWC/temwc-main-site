@@ -1,11 +1,11 @@
 import type { APIRoute } from "astro";
 import { createAuth } from "../../../auth";
+import { env } from "cloudflare:workers";
 
 export const prerender = false;
 
 export const GET: APIRoute = async (ctx) => {
-	// @ts-ignore - Astro v6+ Cloudflare adapter provides env directly on locals
-	const D1Database = ctx.locals.env?.DB;
+	const D1Database = env.DB;
 	if (!D1Database) {
 		return new Response("D1 database not found", { status: 500 });
 	}
@@ -16,8 +16,7 @@ export const GET: APIRoute = async (ctx) => {
 export const ALL: APIRoute = async (ctx) => {
   	// If you want to use rate limiting, make sure to set the 'x-forwarded-for' header to the request headers from the context
 	// ctx.request.headers.set("x-forwarded-for", ctx.clientAddress);
-	// @ts-ignore - Astro v6+ Cloudflare adapter provides env directly on locals
-	const D1Database = ctx.locals.env?.DB;
+	const D1Database = env.DB;
 	if (!D1Database) {
 		return new Response("D1 database not found", { status: 500 });
 	}

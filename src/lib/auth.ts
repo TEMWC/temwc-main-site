@@ -1,8 +1,8 @@
 import { createAuth } from "../auth";
+import { env } from "cloudflare:workers";
 
-export function getAuth(context: { locals: { env?: { DB?: D1Database } } }) {
-  // @ts-ignore - Astro v6+ Cloudflare adapter provides env directly on locals
-  const D1Database = context.locals.env?.DB;
+export function getAuth() {
+  const D1Database = env.DB;
   
   if (!D1Database) {
     throw new Error("D1 database not found in context");

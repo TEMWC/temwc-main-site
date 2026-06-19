@@ -1,14 +1,14 @@
 import { defineMiddleware } from "astro:middleware";
 import { createAuth } from "./auth";
+import { env } from "cloudflare:workers";
 
 export const onRequest = defineMiddleware(async(context, next) => {
   const protectedRoutes = ["/dashboard", "/settings", "/admin"]; //Todo: move admin to zero trust.
   
   // 1. Check if the current route is protected
   if (protectedRoutes.some(route => context.url.pathname.startsWith(route))) {
-    // Get D1 database from Cloudflare context (Astro v6+)
-    // @ts-ignore - Cloudflare Workers env
-    const D1Database = context.locals.env?.DB;
+    // Get D1 database from Cloudflare env (Astro v6+)
+    const D1Database = env.DB;
     
     if (!D1Database) {
       console.error("D1 database not found in context");

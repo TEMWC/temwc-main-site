@@ -1,10 +1,10 @@
 import type { APIContext } from 'astro';
+import { env } from "cloudflare:workers";
 
 export const prerender = false;
 
 export const POST = async (context: APIContext) => {
-  // @ts-ignore - Astro v6+ Cloudflare adapter provides env directly on locals
-  const { DB, BUCKET } = context.locals.env;
+  const { DB, BUCKET } = env;
   const formData = await context.request.formData();
   
   const title = formData.get("title") as string;
