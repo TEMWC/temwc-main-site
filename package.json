@@ -16,7 +16,11 @@
 		"@astrojs/mdx": "^6.0.3",
 		"@astrojs/rss": "^4.0.18",
 		"@astrojs/sitemap": "^3.7.3",
+		"@better-auth/drizzle-adapter": "^1.6.19",
 		"astro": "^6.4.8",
+		"better-auth": "^1.6.19",
+		"drizzle-kit": "^0.31.10",
+		"drizzle-orm": "^0.45.2",
 		"typescript": "5.9.3"
 	},
 	"devDependencies": {
@@ -34,7 +38,10 @@
 		"check": "astro build && tsc && wrangler deploy --dry-run",
 		"deploy": "wrangler deploy",
 		"dev": "astro dev",
-		"preview": "astro build && wrangler dev"
+		"preview": "astro build && wrangler dev",
+		"db:generate": "drizzle-kit generate",
+		"db:migrate": "wrangler d1 migrations apply temwc --local",
+		"db:migrate:prod": "wrangler d1 migrations apply temwc"
 	},
 	"type": "module"
 }
